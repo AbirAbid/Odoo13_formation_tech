@@ -44,8 +44,8 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="f_name"/>
-                                <field name="l_name"/>
+                                <field name="f_name" />
+                                <field name="l_name" />
                                 <field name="sex"/>
                                 <field name="identity_card"/>
                                 <field name="birthday"
@@ -60,6 +60,7 @@
                                 <field name="email"/>
                                 <field name="phone"/>
                                 <field name="section_id"/>
+
                                 <!--si department id not false classroom is required -->
                                 <field name="classroom_id" attrs="{'required':[('section_id','!=',False)]}"/>
                                 <field name="photoStudent" widget="image" width="64"
@@ -79,6 +80,8 @@
                 </form>
 
             </field>
+
+
         </record>
 
         <record id="student_kanban_view" model="ir.ui.view">

@@ -6,9 +6,9 @@ class UniversityClassroom(models.Model):
     # pour chatter
     _inherit = 'mail.thread'
     _rec_name = 'classroom_name'
-    classroom_name = fields.Char()
+    classroom_name = fields.Char(required="1")
 
-    code = fields.Char()
+    code = fields.Char(required="1")
 
     # inverse_name = champs qui relie 2 objects
     student_ids = fields.One2many('university.student', 'classroom_id')

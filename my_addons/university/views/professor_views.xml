@@ -82,13 +82,41 @@
 
                         </notebook>
                     </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level":1}'/>
+
+                    </div>
+
                 </form>
 
             </field>
 
         </record>
 
-        <!-- actions opening views on models -->
+        <!-- Graph -->
+
+        <record model="ir.ui.view" id="professor_graph_view">
+
+            <field name="name">Professor graph</field>
+
+            <field name="model">university.professor</field>
+
+            <field name="arch" type="xml">
+
+                <graph string="count class for prof">
+
+                    <field name="f_name"/>
+                    <field name="classroom_count" type="measure"/>
+
+
+                </graph>
+
+            </field>
+
+        </record>
 
 
         <record model="ir.actions.act_window" id="professor_action_window">
@@ -97,7 +125,7 @@
 
             <field name="res_model">university.professor</field>
 
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">graph,tree,form</field>
 
         </record>
 

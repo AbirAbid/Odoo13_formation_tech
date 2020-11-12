@@ -7,3 +7,4 @@ from . import department
 from . import classroom
 from . import res_partners
 from . import section
+from . import stu_sub

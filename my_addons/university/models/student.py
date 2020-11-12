@@ -10,23 +10,23 @@ class UniversityStudent(models.Model):
     _name = 'university.student'
     _rec_name = 'f_name'
 
-    f_name = fields.Char('First name')
+    f_name = fields.Char('First name', required="1")
 
-    l_name = fields.Char('Last name')
+    l_name = fields.Char('Last name', required="1")
 
-    sex = fields.Selection([('male', "Male"), ("female", "Female")])
+    sex = fields.Selection([('male', "Male"), ("female", "Female")], required="1")
 
-    identity_card = fields.Char('Identity Card')
+    identity_card = fields.Char('Identity Card', required="1")
 
-    adress = fields.Text('Adresse')
+    adress = fields.Text('Adresse', required="1")
 
     x = datetime.datetime(1999, 1, 1)
 
     birthday = fields.Date('Birthday', default=x)
 
-    registration_date = fields.Datetime(default=fields.Date.today)
-    email = fields.Char()
-    phone = fields.Char()
+    registration_date = fields.Datetime(default=fields.Date.today, required="1")
+    email = fields.Char(required="1")
+    phone = fields.Char(required="1")
 
     photoStudent = fields.Binary("Student photo", attachment=True, store=True)
     score = fields.Float('Score')
@@ -36,14 +36,18 @@ class UniversityStudent(models.Model):
     # manyToOne clé étrangére
     # department_id = fields.Many2one('university.department')
 
-    section_id = fields.Many2one('university.section', 'Section for student')
+    section_id = fields.Many2one('university.section', 'Section for student', required="1")
 
     # (student-classroom)
-    classroom_id = fields.Many2one('university.classroom')
+    classroom_id = fields.Many2one('university.classroom', required="1")
     # pour que subject_ids est un champ relié
     # subject_ids pour avoir les subjects du classroom de l'etudiant
     # Many2many subject_classroom
     subject_ids = fields.Many2many('university.subject')
+
+    stu_sub_id = fields.One2many('university.stu_sub', 'student_id')
+
+
 
     # name_get lors de select student display class+name+last name
     def name_get(self):
