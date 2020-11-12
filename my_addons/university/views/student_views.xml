@@ -1,0 +1,155 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="student_list_view">
+            <field name="name">Student list</field>
+            <field name="model">university.student</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state=='l1'" decoration-success="state=='l2'" decoration-warning="state=='l3'"
+                      decoration-danger="state=='finished'">
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="sex"/>
+                    <field name="identity_card"/>
+                    <field name="birthday"/>
+                    <field name="state"/>
+
+                    <field name="registration_date"/>
+                    <field name="photoStudent" widget="image" width="64"
+                           height="64"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view-->
+        <record model="ir.ui.view" id="student_form_view">
+            <field name="name">Student form</field>
+            <field name="model">university.student</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <header>
+                        <button name="calcul_score" type="object" class="oe_highlight" string="Score"></button>
+                        <button name="previous_level" type="object" class="oe_highlight" icon="fa-arrow-left"
+                                attrs="{'invisible': [('state', '=', 'l1')]}"></button>
+
+                        <button name="next_level" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('state', '=', 'finished')]}" icon="fa-arrow-right"></button>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="f_name"/>
+                                <field name="l_name"/>
+                                <field name="sex"/>
+                                <field name="identity_card"/>
+                                <field name="birthday"
+                                       options="{'datepicker':{'minDate': '01/01/1999','maxDate': '02/01/1999'}}"/>
+                                <!--Date d'inscription no update if level1 est passé-->
+                                <field name="registration_date" readonly="1"/>
+                            </group>
+                            <group>
+                                <!--si card empty file adress invisible -->
+
+                                <field name="adress" attrs="{'invisible':[('identity_card','=',False)]}"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="section_id"/>
+                                <!--si department id not false classroom is required -->
+                                <field name="classroom_id" attrs="{'required':[('section_id','!=',False)]}"/>
+                                <field name="photoStudent" widget="image" width="64"
+                                       height="64"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="List of subject">
+                                <field name="subject_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="student_kanban_view" model="ir.ui.view">
+
+            <field name="name">student.kanban</field>
+            <field name="model">university.student</field>
+            <field name="arch" type="xml">
+                <kanban class="o_student_kanban">
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="email"/>
+
+                    <field name="phone"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+
+
+                                    <img alt="Blacklist"
+                                         src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
+                                         class="oe_kanban_avatar float-left mr-3" width="64"
+                                         height="64"/>
+
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <field name="f_name"/>
+                                    </strong>
+                                    <div>
+                                        <field name="phone"/>
+
+                                    </div>
+                                    <div>
+                                        <field name="email"/>
+
+                                    </div>
+
+                                    <div>
+                                        <field name="photoStudent" widget="image" width="64"
+                                               height="64"/>
+                                    </div>
+                                    <div>
+                                        <field name="state"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="student_action_window">
+            <field name="name">Student window</field>
+            <field name="res_model">university.student</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="University" id="university.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Students" id="university_student_cat" parent="university.menu_root"
+                  action="student_action_window"/>
+
+
+    </data>
+</odoo>

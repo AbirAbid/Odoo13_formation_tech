@@ -1,0 +1,89 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="classroom_list_view">
+
+            <field name="name">Classroom list</field>
+            <field name="model">university.classroom</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="classroom_name"/>
+                    <field name="code"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- form view-->
+        <record model="ir.ui.view" id="classroom_form_view">
+            <field name="name">Classroom form</field>
+            <field name="model">university.classroom</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="classroom_name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="num_prof"/>
+                                <field name="num_sub"/>
+                                <field name="num_stu"/>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="List of professors">
+                                <field name="professor_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+                            </page>
+                            <page string="List of students">
+                                <field name="student_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+                            </page>
+                            <page string="List of subject">
+                                <field name="subject_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+
+                    <div class="oe_chatter">
+                        <!--message_follower_ids champs responsable des abonemments-->
+                        <field name="message_follower_ids" widget="mail_followrs"></field>
+
+                        <!--message_ids champs responsable des msg-->
+
+                        <field name="message_ids" widget="mail_thread"></field>
+
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="classroom_action_window">
+            <field name="name">Classroom window</field>
+            <field name="res_model">university.classroom</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- menu categories -->
+
+        <menuitem name="Classroom" id="university_classroom_cat" parent="university.menu_root"
+                  action="classroom_action_window"/>
+
+        <!-- actions -->
+
+
+    </data>
+</odoo>

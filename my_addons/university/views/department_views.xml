@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="department_list_view">
+            <field name="name">Department list</field>
+            <field name="model">university.department</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name_department"/>
+                    <field name="code_dep"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view-->
+        <record model="ir.ui.view" id="department_form_view">
+            <field name="name">Department form</field>
+            <field name="model">university.department</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name_department"/>
+                            <field name="code_dep"/>
+
+                        </group>
+
+                        <notebook>
+                            <page string="List of professor">
+                                <field name="professor_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="department_action_window">
+            <field name="name">Department window</field>
+            <field name="res_model">university.department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+
+        <!-- menu categories -->
+
+        <menuitem name="Department and section " id="university_department_cat" parent="university.menu_root" />
+
+        <!-- actions -->
+
+        <menuitem name="Departments" id="university_department_list" parent="university_department_cat"
+                  action="department_action_window"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="department_list_view">
+            <field name="name">Kanban list</field>
+            <field name="model">university.res_partners</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <field name="display_name"/>
+                    <field name="id"/>
+
+                    <field name="photoStudent" widget="image" width="64"
+                           height="64"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act2">
+            <field name="name">Kanban window</field>
+            <field name="res_model">university.res_partners</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <record id="partner_kanban_view" model="ir.ui.view">
+
+            <field name="name">res_partner.kanban</field>
+            <field name="model">university.res_partners</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="display_name"/>
+                    <field name="email"/>
+                    <field name="id"/>
+
+                    <field name="mobile"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+
+
+                                    <img alt="Blacklist"
+                                          src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
+                                          class="oe_kanban_avatar float-left mr-3" width="64"
+                                          height="64"/>
+
+                                    <!-- <img t-att-src= 'image', record.id.raw_value)"
+                                          alt="Approvals Types Image" class="oe_kanban_avatar float-left mr-3" width="64"
+                                          height="64"/>
+ -->
+
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <field name="display_name"/>
+                                    </strong>
+                                    <div>
+                                        <field name="mobile"/>
+
+                                    </div>
+                                    <div>
+                                        <field name="email"/>
+
+                                    </div>
+
+                                    <div>
+                                        <field name="photoStudent" widget="image" width="64"
+                                               height="64"/>
+                                    </div>
+                                    <div><field name="id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <menuitem name="profil" id="test" parent="university.menu_root"/>
+        <menuitem name="List profil" id="test2" parent="test"
+                  action="university.act2"/>
+
+
+    </data>
+</odoo>

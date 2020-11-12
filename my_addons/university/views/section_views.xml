@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="section_list_view">
+            <field name="name">Section list</field>
+            <field name="model">university.section</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name_section"/>
+                    <field name="code"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view-->
+        <record model="ir.ui.view" id="section_form_view">
+            <field name="name">Section form</field>
+            <field name="model">university.section</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name_section"/>
+                            <field name="code"/>
+
+                        </group>
+
+                        <notebook>
+
+                            <page string="List of students">
+                                <field name="student_ids"
+                                       widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="section_action_window">
+            <field name="name">Section window</field>
+            <field name="res_model">university.section</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+
+        <!-- menu categories -->
+
+        <menuitem name="Section" id="university_section_cat" parent="university_department_cat"
+                  action="section_action_window"/>
+
+        <!-- actions -->
+
+
+    </data>
+</odoo>

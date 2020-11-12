@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+
+        <!-- explicit list view definition -->
+
+
+        <record model="ir.ui.view" id="professor_list_view">
+
+            <field name="name">Professor list</field>
+
+            <field name="model">university.professor</field>
+
+            <field name="arch" type="xml">
+
+                <tree>
+
+                    <field name="f_name"/>
+
+                    <field name="l_name"/>
+
+                    <field name="sexe"/>
+
+                    <field name="identity_card"/>
+
+                    <field name="birthday"/>
+
+                    <field name="start_date"/>
+
+                </tree>
+
+            </field>
+
+        </record>
+
+        <!-- explicit form view definition -->
+
+
+        <record model="ir.ui.view" id="professor_form_view">
+
+            <field name="name">Professor Form</field>
+
+            <field name="model">university.professor</field>
+
+            <field name="arch" type="xml">
+
+                <form>
+                    <sheet>
+                        <group>
+
+                            <field name="f_name"/>
+
+                            <field name="l_name"/>
+
+                            <field name="sexe"/>
+
+                            <field name="identity_card"/>
+                        </group>
+                        <group>
+                            <field name="birthday"
+                                   options="{'datepicker':{'minDate': '01/01/1999','maxDate': '02/01/1999'}}"/>
+
+
+                            <field name="start_date" readonly="1"/>
+
+                            <field name="department_id"/>
+
+                            <field name="subject_id"/>
+
+                        </group>
+
+                        <notebook>
+
+                            <page string="List of classrooms">
+
+                                <field name="classroom_ids" widget="many2many_tags"
+                                       options="{'no_create_edit': True}"/>
+
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+
+        </record>
+
+        <!-- actions opening views on models -->
+
+
+        <record model="ir.actions.act_window" id="professor_action_window">
+
+            <field name="name">professor window</field>
+
+            <field name="res_model">university.professor</field>
+
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+
+        <menuitem name="Professors" id="university_professor_cat" parent="university.menu_root"
+
+                  action="professor_action_window"/>
+
+
+    </data>
+
+</odoo>
+
+
