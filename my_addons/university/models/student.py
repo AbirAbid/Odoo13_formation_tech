@@ -4,6 +4,8 @@ from odoo import models, fields, api
 
 import dateutil.parser
 import datetime
+import re
+from odoo.exceptions import ValidationError
 
 
 class UniversityStudent(models.Model):
@@ -47,8 +49,6 @@ class UniversityStudent(models.Model):
 
     stu_sub_id = fields.One2many('university.stu_sub', 'student_id')
 
-
-
     # name_get lors de select student display class+name+last name
     def name_get(self):
         result = []
@@ -88,3 +88,17 @@ class UniversityStudent(models.Model):
         self.score = 0;
         for sub in self.subject_ids:
             print('self.subject_ids.subject_name', sub.subject_name)
+
+    @api.onchange('email')
+    def validate_mail(self):
+        if self.email:
+            match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
+            if match == None:
+                raise ValidationError('Not a valid E-mail ID')
+
+    @api.onchange('phone')
+    def validate_phone(self):
+        if self.phone:
+            match = re.match("^[0-9]\d{7}$", self.phone)
+            if match == None:
+                raise ValidationError("Enter valid 8 digits Mobile number")

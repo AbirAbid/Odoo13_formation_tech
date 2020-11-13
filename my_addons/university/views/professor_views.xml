@@ -15,19 +15,25 @@
 
             <field name="arch" type="xml">
 
-                <tree>
+                <tree decoration-danger="sex=='female'" decoration-info="sex=='male'">
+                    <field name="photoProf" widget="image" width="64"
+                           height="64"/>
 
                     <field name="f_name"/>
 
                     <field name="l_name"/>
 
-                    <field name="sexe"/>
+                    <field name="sex"/>
 
                     <field name="identity_card"/>
 
                     <field name="birthday"/>
 
                     <field name="start_date"/>
+
+                    <field name="email"/>
+                    <field name="email"/>
+
 
                 </tree>
 
@@ -54,20 +60,23 @@
 
                             <field name="l_name"/>
 
-                            <field name="sexe"/>
-
+                            <field name="sex"/>
+                            <field name="phone"/>
                             <field name="identity_card"/>
                         </group>
                         <group>
                             <field name="birthday"
                                    options="{'datepicker':{'minDate': '01/01/1999','maxDate': '02/01/1999'}}"/>
 
+                            <field name="email"/>
 
                             <field name="start_date" readonly="1"/>
 
                             <field name="department_id"/>
 
                             <field name="subject_id"/>
+
+                            <field name="photoProf"/>
 
                         </group>
 
@@ -118,6 +127,56 @@
 
         </record>
 
+        <!--Kanban-->
+
+        <record id="professor_kanban_view" model="ir.ui.view">
+
+            <field name="name">Professor.kanban</field>
+            <field name="model">university.professor</field>
+            <field name="arch" type="xml">
+                <kanban class="o_professor_kanban">
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="email"/>
+
+                    <field name="phone"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+
+
+                                    <img alt="Blacklist"
+                                         src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
+                                         class="oe_kanban_avatar float-left mr-3" width="64"
+                                         height="64"/>
+
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <field name="f_name"/>
+                                    </strong>
+                                    <div>
+                                        <field name="phone"/>
+
+                                    </div>
+                                    <div>
+                                        <field name="email"/>
+
+                                    </div>
+
+                                    <div>
+                                        <field name="photoProf" widget="image" width="64"
+                                               height="64"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
         <record model="ir.actions.act_window" id="professor_action_window">
 
@@ -125,7 +184,7 @@
 
             <field name="res_model">university.professor</field>
 
-            <field name="view_mode">graph,tree,form</field>
+            <field name="view_mode">tree,kanban,graph,form</field>
 
         </record>
 

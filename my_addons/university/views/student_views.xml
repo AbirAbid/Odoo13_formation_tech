@@ -8,6 +8,8 @@
             <field name="arch" type="xml">
                 <tree decoration-info="state=='l1'" decoration-success="state=='l2'" decoration-warning="state=='l3'"
                       decoration-danger="state=='finished'">
+                    <field name="photoStudent" widget="image" width="64"
+                           height="64"/>
                     <field name="f_name"/>
                     <field name="l_name"/>
                     <field name="sex"/>
@@ -16,8 +18,6 @@
                     <field name="state"/>
 
                     <field name="registration_date"/>
-                    <field name="photoStudent" widget="image" width="64"
-                           height="64"/>
 
                 </tree>
             </field>
@@ -44,8 +44,8 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="f_name" />
-                                <field name="l_name" />
+                                <field name="f_name"/>
+                                <field name="l_name"/>
                                 <field name="sex"/>
                                 <field name="identity_card"/>
                                 <field name="birthday"
@@ -83,6 +83,7 @@
 
 
         </record>
+        <!-- KANBAN view-->
 
         <record id="student_kanban_view" model="ir.ui.view">
 
@@ -140,7 +141,7 @@
         <record model="ir.actions.act_window" id="student_action_window">
             <field name="name">Student window</field>
             <field name="res_model">university.student</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
         </record>
 
 
