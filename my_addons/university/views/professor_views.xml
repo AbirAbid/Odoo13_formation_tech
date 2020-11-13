@@ -32,7 +32,6 @@
                     <field name="start_date"/>
 
                     <field name="email"/>
-                    <field name="email"/>
 
 
                 </tree>

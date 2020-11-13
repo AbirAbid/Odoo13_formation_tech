@@ -25,23 +25,24 @@ class UniversityProfessor(models.Model):
 
     classroom_ids = fields.Many2many('university.classroom')
 
-    classroom_count = fields.Integer(string="count classroom",
+    classroom_count = fields.Integer(string="Count classroom",
                                      compute='get_classroom_count',
-                                     store=True
-                                     )
+                                     store=True)
 
     def name_get(self):
         result = []
         for professor in self:
-            name = '[' + professor.identity_card + ']' + professor.f_name + ' ' + professor.l_name
+            name =  professor.f_name + ' ' + professor.l_name
             result.append((professor.id, name))
         return result
 
+    # for graph
     @api.depends('classroom_ids')
     def get_classroom_count(self):
         for p in self:
             p.classroom_count = len(p.classroom_ids)
 
+    # Verification email phone
     @api.onchange('email')
     def validate_mail(self):
         if self.email:

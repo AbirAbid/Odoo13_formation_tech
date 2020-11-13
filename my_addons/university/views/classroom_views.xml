@@ -51,6 +51,7 @@
                                        options="{'no_create_edit': True}"/>
                             </page>
                         </notebook>
+
                     </sheet>
 
 
@@ -67,13 +68,32 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="classroom_graph_view">
+
+            <field name="name">Classroom graph</field>
+
+            <field name="model">university.classroom</field>
+
+            <field name="arch" type="xml">
+
+                <graph>
+
+                    <field name="classroom_name"/>
+                    <field name="prof_count" type="measure"/>
+
+
+                </graph>
+
+            </field>
+
+        </record>
 
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="classroom_action_window">
             <field name="name">Classroom window</field>
             <field name="res_model">university.classroom</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,graph,form</field>
         </record>
 
 
