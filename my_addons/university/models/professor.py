@@ -10,7 +10,7 @@ class UniversityProfessor(models.Model):
     _name = 'university.professor'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    id = fields.Integer()
+    #id = fields.Integer()
 
     f_name = fields.Char('First name', required="1", tracking=True)
     l_name = fields.Char('Last name', required="1")

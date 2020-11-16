@@ -93,11 +93,12 @@
             <field name="model">university.student</field>
             <field name="arch" type="xml">
                 <kanban class="o_student_kanban">
-                    <!--  <field name="f_name"/>
-                      <field name="l_name"/>
-                      <field name="email"/>
-                      <field name="photoStudent"/>
-                      <field name="phone"/>-->
+                    <field name="id"/>
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="email"/>
+                    <field name="photoStudent"/>
+                    <field name="phone"/>
 
                     <templates>
                         <t t-name="kanban-box">
@@ -130,7 +131,6 @@
 
 
                                     <div>
-                                        <field name="id" invisible="1"/>
 
                                         <field name="state"/>
                                     </div>
@@ -157,7 +157,7 @@
 
         <!-- menu categories -->
 
-        <menuitem name="Students" id="university_student_cat" parent="university.menu_root"
+        <menuitem name="Students" id="university_student_cat" parent="university.menu_root" groups="university.student_grp"
                   action="student_action_window"/>
 
 

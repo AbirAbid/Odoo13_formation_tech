@@ -84,7 +84,7 @@
 
         <!-- actions -->
 
-        <menuitem name="Departments" id="university_department_list" parent="university_department_cat"
+        <menuitem name="Departments" id="university_department_list" parent="university_department_cat" groups="university.prof_grp"
                   action="department_action_window"/>
 
     </data>

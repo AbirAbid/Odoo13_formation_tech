@@ -81,7 +81,6 @@
                             <field name="photoProf"/>
 
 
-
                         </group>
 
                         <notebook>
@@ -141,7 +140,10 @@
             <field name="model">university.professor</field>
             <field name="arch" type="xml">
                 <kanban class="o_professor_kanban">
+                    <field name="id"/>
+
                     <templates>
+
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
@@ -161,7 +163,6 @@
                                     <div>
                                         <field name="email"/>
 
-                                        <field name="id" invisible="1"/>
 
                                     </div>
 
@@ -185,7 +186,7 @@
         </record>
 
 
-        <menuitem name="Professors" id="university_professor_cat" parent="university.menu_root"
+        <menuitem name="Professors" id="university_professor_cat" parent="university.menu_root" groups="university.prof_grp"
 
                   action="professor_action_window"/>
 

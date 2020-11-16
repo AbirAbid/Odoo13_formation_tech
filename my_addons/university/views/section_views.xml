@@ -81,7 +81,7 @@
 
         <!-- menu categories -->
 
-        <menuitem name="Section" id="university_section_cat" parent="university_department_cat"
+        <menuitem name="Section" id="university_section_cat" parent="university_department_cat" groups="university.student_grp"
                   action="section_action_window"/>
 
         <!-- actions -->
