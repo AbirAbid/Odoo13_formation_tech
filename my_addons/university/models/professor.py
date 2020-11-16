@@ -35,9 +35,7 @@ class UniversityProfessor(models.Model):
     classroom_count = fields.Integer(string="Count classroom",
                                      compute='get_classroom_count',
                                      store=True)
-    user_login = fields.Many2one('res.users','Current User', default=lambda self: self.env.user)
-
-
+    user_login = fields.Many2one('res.users', 'Managed by ', default=lambda self: self.env.user)
 
     def name_get(self):
         result = []

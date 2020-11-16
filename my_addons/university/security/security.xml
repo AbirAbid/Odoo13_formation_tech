@@ -3,21 +3,48 @@
     <!-- categorie groupe -->
     <record id="module_category_university" model="ir.module.category">
         <field name="name">University Mangment</field>
-        <field name="description"> Categorie university</field>
+        <field name="description"> Categorie Groups</field>
         <field name="sequence"> 45 </field>
     </record>
+
+    <!--*************************************For manger *************************************-->
+    <record model="res.groups" id="grp_manager">
+        <field name="name">Manger</field>
+        <field name="category_id" ref="module_category_university"/>
+        <!-- implied ==> herite from other grp -->
+        <field name="implied_ids" eval="[(4, ref('prof_grp'))]"/>
+                <field name="implied_ids" eval="[(4, ref('student_grp'))]"/>
+
+
+    </record>
+
+    <record id="rule_for_prof_admin" model="ir.rule">
+        <field name="name">See all professors </field>
+        <field name="model_id" ref="university.model_university_professor"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('university.grp_manager'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+    <record id="rule_for_student_admin" model="ir.rule">
+        <field name="name">See all students </field>
+        <field name="model_id" ref="university.model_university_student"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('university.grp_manager'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+
+    <!--******************************************For prof**********************************************************-->
 
     <record model="res.groups" id="prof_grp">
         <field name="name">Prof group</field>
         <field name="category_id" ref="module_category_university"/>
-    </record>
-
-    <record model="res.groups" id="prof_grp_manager">
-        <field name="name">Prof administration</field>
-        <field name="category_id" ref="module_category_university"/>
-        <!-- implied ==> herite from other grp -->
-        <field name="implied_ids" eval="[(4, ref('prof_grp'))]"/>
-
     </record>
 
     <!--rules-->
@@ -32,11 +59,18 @@
         <field name="perm_read" eval="1"/>
     </record>
 
-    <record id="rule_for_prof_admin" model="ir.rule">
-        <field name="name">See all professors </field>
-        <field name="model_id" ref="university.model_university_professor"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4, ref('university.prof_grp_manager'))]"/>
+    <!--****************************************** For student **********************************************************-->
+    <record model="res.groups" id="student_grp">
+        <field name="name">Student group</field>
+        <field name="category_id" ref="module_category_university"/>
+    </record>
+
+    <!--rules-->
+    <record id="rule_for_student" model="ir.rule">
+        <field name="name">See his student only </field>
+        <field name="model_id" ref="university.model_university_student"/>
+        <field name="domain_force">[('user_login', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('university.student_grp'))]"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_write" eval="1"/>
         <field name="perm_unlink" eval="1"/>

@@ -18,6 +18,8 @@
                     <field name="state"/>
 
                     <field name="registration_date"/>
+                    <field name="user_login" groups="university.grp_manager"/>
+
 
                 </tree>
             </field>
@@ -103,7 +105,8 @@
                                 <div class="o_kanban_image">
 
 
-                                    <img t-att-src="kanban_image('university.student','photoStudent',record.id.value)" alt="avatar"/>
+                                    <img t-att-src="kanban_image('university.student','photoStudent',record.id.value)"
+                                         alt="avatar"/>
 
 
                                     <!--   <img alt="Blacklist"

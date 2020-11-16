@@ -32,7 +32,7 @@
                     <field name="start_date"/>
 
                     <field name="email"/>
-                    <field name="user_login" groups="university.prof_grp_manager"/>
+                    <field name="user_login" groups="university.grp_manager"/>
 
 
                 </tree>

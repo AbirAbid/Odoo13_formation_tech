@@ -50,6 +50,7 @@ class UniversityStudent(models.Model):
     subject_ids = fields.Many2many('university.subject')
 
     stu_sub_id = fields.One2many('university.stu_sub', 'student_id')
+    user_login = fields.Many2one('res.users', 'Managed by ', default=lambda self: self.env.user)
 
     # name_get lors de select student display class+name+last name
     def name_get(self):
