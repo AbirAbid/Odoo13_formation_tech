@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- categorie groupe -->
     <record id="module_category_university" model="ir.module.category">
         <field name="name">University Mangment</field>
         <field name="description"> Categorie university</field>
-        <!--
-                <field name="sequence"> 45 </field>
-        -->
-
+        <field name="sequence"> 45 </field>
     </record>
 
-    <record model="res.groups" id="module_admin">
-        <field name="name">University / Admin</field>
-
+    <record model="res.groups" id="prof_grp">
+        <field name="name">Prof group</field>
         <field name="category_id" ref="module_category_university"/>
+    </record>
 
+    <record model="res.groups" id="prof_grp_manager">
+        <field name="name">Prof administration</field>
+        <field name="category_id" ref="module_category_university"/>
+        <!-- implied ==> herite from other grp -->
+        <field name="implied_ids" eval="[(4, ref('prof_grp'))]"/>
 
     </record>
 
-    <!--<record model="res.groups" id="module_student">
-       <field name="name">University / Student</field>
-      <field name="category_id" ref="module_category_university"/>
-       <field name="implied_ids" eval="[(4, ref('module_admin'))]"/>
-   </record>-->
+    <!--rules-->
+    <record id="rule_for_prof" model="ir.rule">
+        <field name="name">See his professors only </field>
+        <field name="model_id" ref="university.model_university_professor"/>
+        <field name="domain_force">[('user_login', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('university.prof_grp'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+    <record id="rule_for_prof_admin" model="ir.rule">
+        <field name="name">See all professors </field>
+        <field name="model_id" ref="university.model_university_professor"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('university.prof_grp_manager'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+
 </odoo>

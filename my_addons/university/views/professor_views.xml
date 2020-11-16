@@ -32,6 +32,7 @@
                     <field name="start_date"/>
 
                     <field name="email"/>
+                    <field name="user_login" groups="university.prof_grp_manager"/>
 
 
                 </tree>
@@ -79,6 +80,8 @@
 
                             <field name="photoProf"/>
 
+
+
                         </group>
 
                         <notebook>
@@ -88,7 +91,9 @@
                                 <field name="classroom_ids" widget="many2many_tags"
                                        options="{'no_create_edit': True}"/>
 
+
                             </page>
+
 
                         </notebook>
                     </sheet>
@@ -140,7 +145,8 @@
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
-                                    <img t-att-src="kanban_image('university.professor','photoProf',record.id.value)" alt="avatar"/>
+                                    <img t-att-src="kanban_image('university.professor','photoProf',record.id.value)"
+                                         alt="avatar"/>
 
 
                                 </div>
@@ -156,7 +162,6 @@
                                         <field name="email"/>
 
                                         <field name="id" invisible="1"/>
-
 
                                     </div>
 
