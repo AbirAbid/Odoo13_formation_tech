@@ -71,6 +71,8 @@
 
                             <field name="start_date" readonly="1"/>
 
+                            <field name="address"/>
+
                             <field name="department_id"/>
 
                             <field name="subject_id"/>
@@ -134,21 +136,12 @@
             <field name="model">university.professor</field>
             <field name="arch" type="xml">
                 <kanban class="o_professor_kanban">
-                    <field name="f_name"/>
-                    <field name="l_name"/>
-                    <field name="email"/>
-
-                    <field name="phone"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('university.professor','photoProf',record.id.value)" alt="avatar"/>
 
-
-                                    <img alt="Blacklist"
-                                         src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
-                                         class="oe_kanban_avatar float-left mr-3" width="64"
-                                         height="64"/>
 
                                 </div>
                                 <div class="oe_kanban_details">
@@ -162,12 +155,11 @@
                                     <div>
                                         <field name="email"/>
 
+                                        <field name="id" invisible="1"/>
+
+
                                     </div>
 
-                                    <div>
-                                        <field name="photoProf" widget="image" width="64"
-                                               height="64"/>
-                                    </div>
 
                                 </div>
                             </div>

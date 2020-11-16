@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_university" model="ir.module.category">
+        <field name="name">University Mangment</field>
+        <field name="description"> Categorie university</field>
+        <!--
+                <field name="sequence"> 45 </field>
+        -->
+
+    </record>
+
+    <record model="res.groups" id="module_admin">
+        <field name="name">University / Admin</field>
+
+        <field name="category_id" ref="module_category_university"/>
+
+
+    </record>
+
+    <!--<record model="res.groups" id="module_student">
+       <field name="name">University / Student</field>
+      <field name="category_id" ref="module_category_university"/>
+       <field name="implied_ids" eval="[(4, ref('module_admin'))]"/>
+   </record>-->
+</odoo>

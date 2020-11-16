@@ -91,22 +91,26 @@
             <field name="model">university.student</field>
             <field name="arch" type="xml">
                 <kanban class="o_student_kanban">
-                    <field name="f_name"/>
-                    <field name="l_name"/>
-                    <field name="email"/>
+                    <!--  <field name="f_name"/>
+                      <field name="l_name"/>
+                      <field name="email"/>
+                      <field name="photoStudent"/>
+                      <field name="phone"/>-->
 
-                    <field name="phone"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
 
 
-                                    <img alt="Blacklist"
-                                         src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
-                                         class="oe_kanban_avatar float-left mr-3" width="64"
-                                         height="64"/>
+                                    <img t-att-src="kanban_image('university.student','photoStudent',record.id.value)" alt="avatar"/>
 
+
+                                    <!--   <img alt="Blacklist"
+                                            src="https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png"
+                                            class="oe_kanban_avatar float-left mr-3" width="64"
+                                            height="64"/>
+   -->
                                 </div>
                                 <div class="oe_kanban_details">
                                     <strong>
@@ -121,11 +125,10 @@
 
                                     </div>
 
+
                                     <div>
-                                        <field name="photoStudent" widget="image" width="64"
-                                               height="64"/>
-                                    </div>
-                                    <div>
+                                        <field name="id" invisible="1"/>
+
                                         <field name="state"/>
                                     </div>
                                 </div>

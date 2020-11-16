@@ -47,13 +47,32 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="section_graph_view">
+
+            <field name="name">Section graph</field>
+
+            <field name="model">university.section</field>
+
+            <field name="arch" type="xml">
+
+                <graph string="Student count">
+
+                    <field name="name_section"/>
+                    <field name="stu_co" type="measure"/>
+
+
+                </graph>
+
+            </field>
+
+        </record>
 
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="section_action_window">
             <field name="name">Section window</field>
             <field name="res_model">university.section</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,graph,form</field>
         </record>
 
 

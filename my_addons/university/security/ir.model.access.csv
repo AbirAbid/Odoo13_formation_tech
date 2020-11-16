@@ -7,5 +7,3 @@ access_university_subject,university.subject,model_university_subject,,1,1,1,1
 access_university_res_partners,university.res_partners,model_university_res_partners,,1,1,1,1
 access_university_section,university.section,model_university_section,,1,1,1,1
 access_university_stu_sub,university.stu_sub,model_university_stu_sub,,1,1,1,1
-
-

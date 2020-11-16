@@ -7,9 +7,14 @@ import datetime
 class UniversityProfessor(models.Model):
     _name = 'university.professor'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    id = fields.Integer()
+
     f_name = fields.Char('First name', required="1", tracking=True)
     l_name = fields.Char('Last name', required="1")
+
     sex = fields.Selection([('male', 'Male'), ('female', 'Female')], required="1")
+
     identity_card = fields.Char('Identity card', required="1")
     address = fields.Text('Address', required="1")
     x = datetime.datetime(1999, 1, 1)
@@ -32,7 +37,7 @@ class UniversityProfessor(models.Model):
     def name_get(self):
         result = []
         for professor in self:
-            name =  professor.f_name + ' ' + professor.l_name
+            name = professor.f_name + ' ' + professor.l_name
             result.append((professor.id, name))
         return result
 

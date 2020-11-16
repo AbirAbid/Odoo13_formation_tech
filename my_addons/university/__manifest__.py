@@ -21,7 +21,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail',
+                'base_setup',
+                'resource',
+                'web',
+                'mail_bot' ],
 
     # always loaded
     'data': [
@@ -32,7 +36,7 @@
         'views/department_views.xml',
         'views/contact_views.xml',
         'views/section_views.xml',
-
+        'security/security.xml',
         'security/ir.model.access.csv',
 
     ],

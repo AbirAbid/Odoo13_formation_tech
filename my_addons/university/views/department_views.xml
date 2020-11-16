@@ -46,13 +46,32 @@
             </field>
         </record>
 
+       <record model="ir.ui.view" id="department_graph_view">
+
+            <field name="name">Department graph</field>
+
+            <field name="model">university.department</field>
+
+            <field name="arch" type="xml">
+
+                <graph>
+
+                    <field name="name_department"/>
+                    <field name="prof_count" type="measure"/>
+
+
+                </graph>
+
+            </field>
+
+        </record>
 
         <!-- actions opening views on models -->
 
         <record model="ir.actions.act_window" id="department_action_window">
             <field name="name">Department window</field>
             <field name="res_model">university.department</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,graph,form</field>
         </record>
 
 

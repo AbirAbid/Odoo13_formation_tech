@@ -12,6 +12,8 @@ class UniversityStudent(models.Model):
     _name = 'university.student'
     _rec_name = 'f_name'
 
+    id = fields.Integer()
+
     f_name = fields.Char('First name', required="1")
 
     l_name = fields.Char('Last name', required="1")

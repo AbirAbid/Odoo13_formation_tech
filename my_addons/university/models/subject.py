@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 
 class UniversitySubject(models.Model):
+
     _name = 'university.subject'
     _rec_name = 'subject_name'
 
@@ -9,7 +10,7 @@ class UniversitySubject(models.Model):
 
     code = fields.Char(required="1")
 
-    coef = fields.Integer(default=1,required="1")
+    coef = fields.Integer(default=1, required="1")
 
     # many subject to one department
     # chaque subject apprtient à un seule department
